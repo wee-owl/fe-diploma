@@ -8,12 +8,12 @@ import './Header.css';
 
 function Header() {
   return (
-    <div className='header'>
+    <header className='header'>
       <HeaderLogo />
       <HeaderNav />
       <HeaderCustom />
       <HeaderProgressBar />
-    </div>
+    </header>
   );
 }
 
