@@ -110,5 +110,5 @@
 .form__btn-send:active:not(:disabled) {
   border-color: var(--color-orange);
   background-color: var(--color-white);
-  color: var(--color-orange);;
+  color: var(--color-orange);
 }
