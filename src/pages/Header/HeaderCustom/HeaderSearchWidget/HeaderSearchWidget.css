@@ -18,7 +18,7 @@
 }
 
 .fieldset-date {
-  margin-top: 55px;
+  margin-top: 50px;
   gap: 30px;
 }
 
@@ -35,10 +35,11 @@
 }
 
 .fieldset__input {
+  position: relative;
   width: 100%;
   border: 2px solid transparent;
   border-radius: 3px;
-  padding: 20px 70px 20px 20px;
+  padding: 20px 50px 20px 20px;
   background-color: var(--color-white);
   background-size: auto;
   background-position: right 15px center;

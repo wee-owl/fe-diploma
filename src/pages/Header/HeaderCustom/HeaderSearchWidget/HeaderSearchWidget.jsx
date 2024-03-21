@@ -1,4 +1,6 @@
 import React from 'react';
+import SelectLocation from '#components/Select/SelectLocation';
+import Calendar from '#components/Calendar/Calendar';
 import './HeaderSearchWidget.css';
 
 
@@ -10,27 +12,27 @@ function HeaderSearchWidget() {
         <fieldset className="form__fieldset fieldset fieldset-direction">
           <legend className="fieldset__legend">Направление</legend>
           <div className="fieldset__input-wrapper">
-            <label htmlFor="from" className="fieldset__label" />
-            <input name="from" id="from" placeholder="Откуда" className="fieldset__input fieldset__input-from" />
+            <label className="fieldset__label" />
+            <SelectLocation name={"fieldset__input-from"} placeholder={"Откуда"} />
           </div>
           <div className="fieldset__btn">
-            <button className="fieldset-direction__btn" />
+            <button className="fieldset-direction__btn" type='button' />
           </div>
           <div className="fieldset__input-wrapper">
             <label htmlFor="to" className="fieldset__label" />
-            <input name="to" id="to" placeholder="Куда" className="fieldset__input fieldset__input-to" />
+            <SelectLocation name={"fieldset__input-to"} placeholder={"Куда"} />
           </div>
         </fieldset>
 
         <fieldset className="form__fieldset fieldset fieldset-date">
           <legend className="fieldset__legend">Дата</legend>
           <div className="fieldset__input-wrapper">
-            <label htmlFor="thither" className="fieldset__label" />
-            <input name="thither" id="thither" placeholder="ДД/ММ/ГГ" className="fieldset__input fieldset__input-thither" />
+            <label className="fieldset__label" />
+            <Calendar name={"fieldset__input-thither"} />
           </div>
           <div className="fieldset__input-wrapper">
-            <label htmlFor="back" className="fieldset__label" />
-            <input name="back" id="back" placeholder="ДД/ММ/ГГ" className="fieldset__input fieldset__input-back" />
+            <label className="fieldset__label" />
+            <Calendar name={"fieldset__input-back"} />
           </div>
         </fieldset>
 
