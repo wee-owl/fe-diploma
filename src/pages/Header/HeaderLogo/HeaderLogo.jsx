@@ -7,7 +7,7 @@ function HeaderLogo() {
   return (
     <div className='header-logo'>
       <div className='container'>
-        <Link to="#" className='header-logo__link'>Лого</Link>
+        <Link to="/fe-diploma" className='header-logo__link'>Лого</Link>
       </div>
     </div>
   );

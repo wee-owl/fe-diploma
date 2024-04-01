@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import './HeaderNav.css';
 
 
@@ -10,16 +10,16 @@ function HeaderNav() {
         <nav className='header-nav__nav nav'>
           <ul className='nav__list'>
             <li className='nav__item'>
-              <Link to="#" className='nav__link'>О нас</Link>
+              <HashLink to="/fe-diploma/#about" className='nav__link'>О нас</HashLink>
             </li>
             <li className='nav__item'>
-              <Link to="#" className='nav__link'>Как это работает</Link>
+              <HashLink to="/fe-diploma/#work" className='nav__link'>Как это работает</HashLink>
             </li>
             <li className='nav__item'>
-              <Link to="#" className='nav__link'>Отзывы</Link>
+              <HashLink to="/fe-diploma/#feedback" className='nav__link'>Отзывы</HashLink>
             </li>
             <li className='nav__item'>
-              <Link to="#" className='nav__link'>Контакты</Link>
+              <HashLink to="/fe-diploma/#contacts" className='nav__link'>Контакты</HashLink>
             </li>
           </ul>
         </nav>

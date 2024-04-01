@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header/HeaderFinal/HeaderFinal';
+import Header from '../Header/HeaderFinish/HeaderFinish';
 import Footer from '../Footer/Footer';
 import './FinishPage.css';
 

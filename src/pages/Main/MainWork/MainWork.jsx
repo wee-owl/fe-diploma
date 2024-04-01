@@ -7,7 +7,7 @@ import workImage3 from '#assets/main-work-icon-3.png';
 
 function MainWork() {
   return (
-    <div className='main-work work'>
+    <div className='main-work work' id='work'>
       <div className='container'>
         <div className='work__content-wrapper'>
           <p className='work__title'>Как это работает</p>

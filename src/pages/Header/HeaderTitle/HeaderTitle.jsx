@@ -1,8 +1,8 @@
 import React from 'react';
-import './HeaderCustomTitle.css';
+import './HeaderTitle.css';
 
 
-function HeaderCustomTitle() {
+function HeaderTitle() {
   return (
     <div className='header-title-wrapper'>
       <h1 className='header-title'>
@@ -13,4 +13,4 @@ function HeaderCustomTitle() {
   );
 }
 
-export default HeaderCustomTitle;
+export default HeaderTitle;

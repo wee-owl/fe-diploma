@@ -1,10 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import SelectLocation from '#components/Select/SelectLocation';
 import Calendar from '#components/Calendar/Calendar';
-import './HeaderSearchWidget.css';
+import './HeaderWidget.css';
 
 
-function HeaderSearchWidget() {
+function HeaderWidget() {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate('/fe-diploma/order');
+  };
+
+
   return (
     <div className="search-widget">
       <form className="search-widget__form form">
@@ -37,11 +46,11 @@ function HeaderSearchWidget() {
         </fieldset>
 
         <div className="form__btn">
-          <button className='form__btn-send'>Найти билеты</button>
+          <button className='form__btn-send' type='button' onClick={handleClick}>Найти билеты</button>
         </div>
       </form>
     </div>
   );
 }
 
-export default HeaderSearchWidget;
+export default HeaderWidget;
