@@ -18,7 +18,7 @@ html {
   min-width: 320px;
   min-height: 100vh;
   height: 100%;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 1.5;
@@ -31,9 +31,7 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -61,6 +59,13 @@ input {
   cursor: pointer;
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
 h1, 
 h2, 
 h3, 
@@ -78,6 +83,7 @@ svg {
 }
 
 ul, 
+ol, 
 li {
   display: block;
   list-style: none;
