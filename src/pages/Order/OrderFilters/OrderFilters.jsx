@@ -1,5 +1,6 @@
 import React from 'react';
 import { switchFilters } from '#utils/switchFilters';
+import SVGicon from '#components/SVGicon/SVGicon';
 import Calendar from '#components/Calendar/Calendar';
 import SidebarSwitch from '#components/Switch/SidebarSwitch';
 import SliderPrice from '#components/SliderPrice/SliderPrice';
@@ -32,12 +33,14 @@ function OrderFilters() {
 
       <div className='filter__switch switch'>
         {switchFilters.map(item => {
-            return (
-              <div className='switch__component' key={item.name}>
-                <img className='switch__image' src={item.src} alt={item.alt}/>
-                <span className='switch__title'>{item.alt}</span>
-                <SidebarSwitch name={item.name}/>
+          return (
+            <div className='switch__component' key={item.name}>
+              <div className='switch__image'>
+                <SVGicon name={item.name}/>
               </div>
+              <span className='switch__title'>{item.alt}</span>
+              <SidebarSwitch name={item.name}/>
+            </div>
             )
           })
         }
