@@ -5,7 +5,7 @@ import './OrderLine.css';
 function OrderLine() {
   return (
     <div className='order-line line'>
-      <div className='container'>
+      <div className='line__container'>
         <ol className='line__list line__list-bg'>
           <li className='line__item'>
             <p className='line__title'>
