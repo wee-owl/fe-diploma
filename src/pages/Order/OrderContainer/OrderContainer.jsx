@@ -1,5 +1,6 @@
 import React from 'react';
 import OrderFilters from '../OrderFilters/OrderFilters';
+import OrderLastTickets from '../OrderLastTickets/OrderLastTickets';
 import './OrderContainer.css';
 
 
@@ -10,7 +11,7 @@ function OrderContainer() {
         <div className='order-content'>
           <div className='order-sidebar'>
             <OrderFilters />
-            <div>Last tickets</div>
+            <OrderLastTickets />
           </div>
           <div>Search results</div>
         </div>
