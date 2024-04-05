@@ -40,7 +40,7 @@ function OrderLastTickets() {
                 </div>
                 <div className='ticket-item__options'>
 
-                  {Object.entries(item.departure).map(item => {
+                  {Object.entries(item.departure).map((item, i) => {
                     let iconName = '';
                     if ((item[1] && item[0] === 'have_wifi') 
                       || (item[1] && item[0] === 'have_air_conditioning')) {
@@ -49,7 +49,7 @@ function OrderLastTickets() {
                       return false
                     }
                     return (
-                      <div className='ticket-item__option' key={item.id}>
+                      <div className='ticket-item__option' key={i}>
                         <SVGicon name={iconName}/>
                       </div>
                     )
