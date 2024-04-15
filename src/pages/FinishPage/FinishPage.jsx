@@ -1,13 +1,14 @@
-import React from 'react';
-import Header from '../Header/HeaderFinish/HeaderFinish';
-import Footer from '../Footer/Footer';
-import './FinishPage.css';
+import React from "react";
+import Header from "../Header/HeaderFinish/HeaderFinish";
+import FinishInfo from "./FinishInfo/FinishInfo";
+import Footer from "../Footer/Footer";
 
 
 function FinishPage() {
   return (
     <>
       <Header />
+      <FinishInfo />
       <Footer />
     </>
   );
