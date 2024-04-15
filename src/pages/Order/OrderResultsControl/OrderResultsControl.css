@@ -52,6 +52,14 @@
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #00000040;
+  transition: color, background-color 0.3s ease-in-out;
+}
+
+.result-control__option:hover, 
+.result-control__option:focus, 
+.result-control__option:focus-visible {
+  color: var(--color-white);
+  background-color: var(--color-orange);
 }
 
 .result-control__view {

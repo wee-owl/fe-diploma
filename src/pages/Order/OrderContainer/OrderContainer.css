@@ -23,3 +23,12 @@
 .order-results {
   width: 100%;
 }
+
+.order-results__wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 50px;
+}

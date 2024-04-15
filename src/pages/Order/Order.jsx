@@ -1,12 +1,12 @@
-import React from 'react';
-import OrderLine from './OrderLine/OrderLine';
-import OrderContainer from './OrderContainer/OrderContainer';
-import './Order.css';
+import React from "react";
+import OrderLine from "./OrderLine/OrderLine";
+import OrderContainer from "./OrderContainer/OrderContainer";
+import "./Order.css";
 
 
 function Order() {
   return (
-    <main className='order-page order'>
+    <main className="order-page order">
       <OrderLine />
       <OrderContainer />
     </main>

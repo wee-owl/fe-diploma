@@ -22,10 +22,6 @@
   background-position: center;
 }
 
-.line__list-bg {
-  background-image: url('../../../assets/order-step-1.png');
-}
-
 .line__item {
   flex: 1;
   padding: 20px;
