@@ -1,0 +1,13 @@
+.seats__total-cost {
+  width: fit-content;
+  margin-left: auto;
+  padding-right: 40px;
+  font-size: 24px;
+  color: var(--color-grey);
+}
+
+.seats__total-cost-count {
+  color: var(--color-orange);
+  margin-right: 10px;
+  font-weight: 700;
+}
