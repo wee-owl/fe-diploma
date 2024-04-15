@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import SelectLocation from '#components/Select/SelectLocation';
-import Calendar from '#components/Calendar/Calendar';
-import './HeaderWidget.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import SelectLocation from "#components/Select/SelectLocation";
+import Calendar from "#components/Calendar/Calendar";
+import "./HeaderWidget.css";
 
 
 function HeaderWidget() {
@@ -10,7 +10,7 @@ function HeaderWidget() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigate('/fe-diploma/order');
+    navigate("/fe-diploma/order");
   };
 
 
@@ -25,7 +25,7 @@ function HeaderWidget() {
             <SelectLocation name={"fieldset__input-from"} placeholder={"Откуда"} />
           </div>
           <div className="fieldset__btn">
-            <button className="fieldset-direction__btn" type='button' />
+            <button className="fieldset-direction__btn" type="button" />
           </div>
           <div className="fieldset__input-wrapper">
             <label htmlFor="to" className="fieldset__label" />
@@ -46,7 +46,7 @@ function HeaderWidget() {
         </fieldset>
 
         <div className="form__btn">
-          <button className='form__btn-send' type='button' onClick={handleClick}>Найти билеты</button>
+          <button className="form__btn-send" type="button" onClick={handleClick}>Найти билеты</button>
         </div>
       </form>
     </div>

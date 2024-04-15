@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './HeaderProgressBar.css';
+import React, { useState } from "react";
+import "./HeaderProgressBar.css";
 
 
 function HeaderProgressBar() {
   const [count, setCount] = useState(99999);
-  const loadTime = performance.getEntriesByType('navigation');
+  const loadTime = performance.getEntriesByType("navigation");
   const animStyle = {
     animationDuration: `${count/10}ms`,
   };
@@ -15,11 +15,11 @@ function HeaderProgressBar() {
 
 
   return (
-    <div className='header-progress'>
+    <div className="header-progress">
       <progress 
         style={animStyle}
-        className='progress-bar' 
-        id='progress' 
+        className="progress-bar" 
+        id="progress" 
         value="0" 
         max="100" 
         aria-label="Загрузка страницы">
