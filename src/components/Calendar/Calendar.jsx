@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import AirDatepicker from 'air-datepicker';
-import 'air-datepicker/air-datepicker.css';
-import './Calendar.css';
+import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import AirDatepicker from "air-datepicker";
+import "air-datepicker/air-datepicker.css";
+import "./Calendar.css";
 
 
 function Calendar({name}) {
@@ -12,7 +12,7 @@ function Calendar({name}) {
   useEffect(() => {
     element.current = new AirDatepicker($input.current, {
       navTitles: {
-        days: 'MMMM',
+        days: "MMMM",
       }
     });
   }, []);

@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './Feedback.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./Feedback.css";
 
 
 function Feedback({avatar, name, text}) {
   return (
-    <div className='feedback__container'>
-      <img src={avatar} alt='Avatar' className='feedback__avatar'></img>
-      <div className='feedback__author-content'>
-        <p className='feedback__author-name'>{name}</p>
-        <p className='feedback__author-feedback'>
-          <span className='feedback__author-feedback-text'>
+    <div className="feedback__container">
+      <img src={avatar} alt="Avatar" className="feedback__avatar"></img>
+      <div className="feedback__author-content">
+        <p className="feedback__author-name">{name}</p>
+        <p className="feedback__author-feedback">
+          <span className="feedback__author-feedback-text">
             {text}
           </span>
         </p>

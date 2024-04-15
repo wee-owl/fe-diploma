@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Slider } from 'antd';
-import './SliderPeriod.css';
+import React from "react";
+import PropTypes from "prop-types";
+import { Slider } from "antd";
+import "./SliderPeriod.css";
 
 
 function SliderPeriod({data}) {
   const marks = {
-    0: '0:00',
-    24: '24:00',
+    0: "0:00",
+    24: "24:00",
   }
 
   const formatter = (value) => `${value}:00`;

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Slider } from 'antd';
-import './SliderPrice.css';
+import React from "react";
+import { Slider } from "antd";
+import "./SliderPrice.css";
 
 
 function SliderPrice() {
   const marks = {
-    1920: '1920',
-    7000: '7000',
+    1920: "1920",
+    7000: "7000",
   }
 
   const onChangeComplete = (value) => {

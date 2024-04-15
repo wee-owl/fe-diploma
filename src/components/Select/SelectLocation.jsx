@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Select } from 'antd';
-import './SelectLocation.css';
+import React from "react";
+import PropTypes from "prop-types";
+import { Select } from "antd";
+import "./SelectLocation.css";
 
 
 function SelectLocation({name, placeholder}) {
@@ -10,11 +10,11 @@ function SelectLocation({name, placeholder}) {
   };
 
   const onSearch = (value) => {
-    console.log('search:', value);
+    console.log("search:", value);
   };
 
   const filterOption = (input, option) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
 
   return (
@@ -28,12 +28,12 @@ function SelectLocation({name, placeholder}) {
       filterOption={filterOption}
       options={[
         {
-          value: 'москва',
-          label: 'Москва',
+          value: "москва",
+          label: "Москва",
         },
         {
-          value: 'санкт-петербург',
-          label: 'Санкт-Петербург',
+          value: "санкт-петербург",
+          label: "Санкт-Петербург",
         },
       ]}
       required

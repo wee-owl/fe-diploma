@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Switch } from 'antd';
-import './SidebarSwitch.css';
+import React from "react";
+import PropTypes from "prop-types";
+import { Switch } from "antd";
+import "./SidebarSwitch.css";
 
 
 function SidebarSwitch({name}) {
@@ -11,7 +11,7 @@ function SidebarSwitch({name}) {
 
 
   return (
-    <Switch onChange={onChange} className='switch__btn' data-name={name}/>
+    <Switch className="switch__btn" data-name={name} onChange={onChange}/>
   );
 }
 
