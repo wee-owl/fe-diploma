@@ -108,6 +108,14 @@
   cursor: not-allowed;
 }
 
+.wagon-details__service-icon-exclude, 
+.wagon-details__service-icon-exclude:hover {
+  color: var(--color-grey);
+  border-color: #999999;
+  background-color: #f7f7f7;
+  cursor: not-allowed;
+}
+
 .wagon-details__service-icon-active {
   color: var(--color-white);
   border-color: var(--color-orange);

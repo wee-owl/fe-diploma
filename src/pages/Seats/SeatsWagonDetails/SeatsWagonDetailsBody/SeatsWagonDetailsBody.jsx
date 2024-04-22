@@ -5,9 +5,18 @@ import TooltipBlock from "#components/Tooltip/TooltipBlock";
 
 
 function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
-  const obj = wagonId ? 
-    data.filter(item => item.coach._id === wagonId)[0] : 
-    data.filter(item => item.coach.class_type === wagonType)[0];
+  let obj;
+  if (data && !wagonType) {
+    obj = data[0];
+  } else if (data && wagonType && !wagonId) {
+    obj = data.filter(item => item.coach.class_type === wagonType)[0];
+  } else {
+    obj = data.filter(item => item.coach._id === wagonId)[0];
+  }
+
+  const chooseService = (e) => {
+    //console.dir(e.target);
+  };
 
 
   return (
@@ -65,34 +74,42 @@ function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
       <div className="wagon-details__service">
         <p>Обслуживание ФПК</p>
         <ul className="wagon-details__service-list">
+
           <li className="wagon-details__service-item" 
+            onClick={chooseService}
             data-tooltip-id="have_air_conditioning" 
-            data-tooltip-content="кондиционер" 
+            data-tooltip-content={obj.coach.have_air_conditioning ? "кондиционер работает" : "кондиционер отсутствует"}   
             data-tooltip-place="bottom">
             <TooltipBlock id="have_air_conditioning" />
-            <div className="wagon-details__service-icon wagon-details__service-icon-active">
+            <div className={obj.coach.have_air_conditioning ? "wagon-details__service-icon wagon-details__service-icon-include" : "wagon-details__service-icon wagon-details__service-icon-exclude"}>
               <SVGicon name={"have_air_conditioning"}/>
             </div>
           </li>
+
           <li className="wagon-details__service-item"
+            onClick={chooseService}
             data-tooltip-id="have_wifi" 
-            data-tooltip-content="WI-FI" 
+            data-tooltip-content={obj.coach.have_wifi ? `WI-FI, стоимость ${obj.coach.wifi_price} ₽` : "WI-FI отсутствует"}
             data-tooltip-place="bottom">
             <TooltipBlock id="have_wifi" />
-            <div className="wagon-details__service-icon">
+            <div className={obj.coach.have_wifi ? "wagon-details__service-icon" : "wagon-details__service-icon wagon-details__service-icon-exclude"}>
               <SVGicon name={"have_wifi"}/>
             </div>
           </li>
+
           <li className="wagon-details__service-item"
+            onClick={chooseService}
             data-tooltip-id="have_bed_linen" 
-            data-tooltip-content="белье" 
+            data-tooltip-content={obj.coach.is_linens_included ? "белье включено в стоимость" : `белье, стоимость ${obj.coach.linens_price} ₽`}
             data-tooltip-place="bottom">
             <TooltipBlock id="have_bed_linen" />
-            <div className="wagon-details__service-icon wagon-details__service-icon-include">
+            <div className={obj.coach.is_linens_included ? "wagon-details__service-icon wagon-details__service-icon-include" : "wagon-details__service-icon"}>
               <SVGicon name={"have_bed_linen"}/>
             </div>
           </li>
-          <li className="wagon-details__service-item"
+
+          {/* <li className="wagon-details__service-item"
+            onClick={chooseService}
             data-tooltip-id="have_train_food" 
             data-tooltip-content="питание" 
             data-tooltip-place="bottom">
@@ -100,7 +117,8 @@ function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
             <div className="wagon-details__service-icon">
               <SVGicon name={"have_train_food"}/>
             </div>
-          </li>
+          </li> */}
+
         </ul>
       </div>
     </>
