@@ -5,7 +5,9 @@ import TooltipBlock from "#components/Tooltip/TooltipBlock";
 
 
 function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
-  const obj = wagonId ? data.filter(item => item.coach._id === wagonId)[0] : data[0];
+  const obj = wagonId ? 
+    data.filter(item => item.coach._id === wagonId)[0] : 
+    data.filter(item => item.coach.class_type === wagonType)[0];
 
 
   return (
