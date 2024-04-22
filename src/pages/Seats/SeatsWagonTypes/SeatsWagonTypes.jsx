@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
+import RouteContext from "#context/routeContext";
 import SVGicon from "#components/SVGicon/SVGicon";
 import "./SeatsWagonTypes.css";
 
 
 function SeatsWagonTypes({data, identity, onChange}) {
+  const {routeState, setRouteState} = useContext(RouteContext);
   const wagonClasses = [];
   data.forEach(obj => wagonClasses.push(obj.coach.class_type));
 
@@ -17,6 +19,11 @@ function SeatsWagonTypes({data, identity, onChange}) {
     e.target.closest("button").classList.add("wagon-types__item-active");
     const targetClass = e.target.closest("button").id;
     onChange({[`${identity}Class`]: targetClass});
+    setRouteState({
+      ...routeState, 
+      [`${identity}Class`]: targetClass,
+      [`targetType${identity}`]: data.filter(item => item.coach.class_type === targetClass),
+    });
   };
 
 

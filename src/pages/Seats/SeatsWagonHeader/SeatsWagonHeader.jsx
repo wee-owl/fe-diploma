@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
 import "./SeatsWagonHeader.css";
 
+import RouteContext from "#context/routeContext";
 
-function SeatsWagonHeader({data, identity, wagonClass, onChange}) {
+function SeatsWagonHeader({data, identity, wagonClass}) {
+  const {routeState, setRouteState} = useContext(RouteContext);
+
   const handleClick = (e) => {
     e.preventDefault();
     const classElements = e.target.ownerDocument.querySelector(`[id="wagon-names-${identity}"] .wagon-details__list`).children;
     [...classElements].forEach(item => item.style.color = "#000000");
     e.target.style.color = "#FFFFFF";
-    onChange({way: identity, coachId: e.target.id});
+    setRouteState({
+      ...routeState,
+      [`${identity}Id`]: e.target.id,
+    });
   };
 
 
@@ -19,29 +25,29 @@ function SeatsWagonHeader({data, identity, wagonClass, onChange}) {
       <div className="wagon-details__list">
       {
         data.map(item => identity === "departure" && item.coach.class_type === wagonClass.depClass ? 
-            <button 
-              className="wagon-details__item"
-              type="button" 
-              key={item.coach._id}
-              id={item.coach._id}
-              onClick={handleClick}
-              >
-                {item.coach.name}
-            </button> : ""
-          )
+          <button 
+            className="wagon-details__item"
+            type="button" 
+            key={item.coach._id}
+            id={item.coach._id}
+            onClick={handleClick}
+            >
+              {item.coach.name}
+          </button> : ""
+        ) 
       }
       {
         data.map(item => identity === "arrival" && item.coach.class_type === wagonClass.arrClass ? 
-            <button 
-              className="wagon-details__item"
-              type="button" 
-              key={item.coach._id}
-              id={item.coach._id}
-              onClick={handleClick}
-              >
-                {item.coach.name}
-            </button> : ""
-          )
+          <button 
+            className="wagon-details__item"
+            type="button" 
+            key={item.coach._id}
+            id={item.coach._id}
+            onClick={handleClick}
+            >
+              {item.coach.name}
+          </button> : ""
+        )
       }
       </div>
       <p>Нумерация вагонов начинается с головы поезда</p>
@@ -55,5 +61,4 @@ SeatsWagonHeader.propTypes = {
   data: PropTypes.array.isRequired, 
   identity: PropTypes.string.isRequired, 
   wagonClass: PropTypes.object.isRequired, 
-  onChange: PropTypes.func, 
 };

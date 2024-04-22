@@ -13,16 +13,12 @@ import "./SeatsContainer.css";
 
 let depClass;
 let arrClass;
-let depName;
-let arrName;
 function SeatsContainer() {
   const {appState} = useContext(AppContext);
   const {resultDeparture} = useGetSeats(appState, "departure");
   const {resultArrival} = useGetSeats(appState, "arrival");
   const [targetClass, setTargetClass] = useState({});
   const [updateClass, setUpdateClass] = useState(false);
-  const [targetName, setTargetName] = useState({});
-  const [updateName, setUpdateName] = useState(false);
 
   const handleWagonClass = (value) => {
     if (value.departureClass) depClass = value.departureClass;
@@ -30,23 +26,11 @@ function SeatsContainer() {
     setUpdateClass(true);
   };
 
-  const handleWagonName = (value) => {
-    if (value.way === "departure") depName = value.coachId;
-    if (value.way === "arrival") arrName = value.coachId;
-    setUpdateName(true);
-  };
-
   useEffect(() => {
     if (!updateClass) return;
     setTargetClass({...targetClass, depClass, arrClass});
     setUpdateClass(false);
   }, [targetClass, updateClass]);
-
-  useEffect(() => {
-    if (!updateName) return;
-    setTargetName({...targetName, depName, arrName});
-    setUpdateName(false);
-  }, [targetName, updateName]);
 
 
   return (
@@ -71,13 +55,10 @@ function SeatsContainer() {
                   identity={"departure"}
                   wagonClass={targetClass}
                   data={Array.isArray(resultDeparture.result) ? resultDeparture.result : Array.from(resultDeparture.result)} 
-                  onChange={handleWagonName}
                 />
                 <SeatsWagonDetails 
                   data={Array.isArray(resultDeparture.result) ? resultDeparture.result : Array.from(resultDeparture.result)}
                   identity={"departure"}
-                  type={targetClass}
-                  wagonId={targetName}
                 />
                 <SeatsTotalCost />
               </> : ""
@@ -106,13 +87,10 @@ function SeatsContainer() {
                     identity={"arrival"}
                     wagonClass={targetClass}
                     data={Array.isArray(resultArrival.result) ? resultArrival.result : Array.from(resultArrival.result)} 
-                    onChange={handleWagonName}
                   />
                   <SeatsWagonDetails 
                     data={Array.isArray(resultArrival.result) ? resultArrival.result : Array.from(resultArrival.result)}
                     identity={"arrival"}
-                    type={targetClass}
-                    wagonId={targetName}  
                   />
                   <SeatsTotalCost />
                 </> : ""

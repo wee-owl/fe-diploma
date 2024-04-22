@@ -6,16 +6,25 @@ import TooltipBlock from "#components/Tooltip/TooltipBlock";
 
 function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
   let obj;
-  if (data && !wagonType) {
-    obj = data[0];
-  } else if (data && wagonType && !wagonId) {
+  let classArray = data.filter(item => item.coach.class_type === wagonType);
+
+  if (data && wagonType && !wagonId) {
     obj = data.filter(item => item.coach.class_type === wagonType)[0];
-  } else {
+
+  } else if (data && wagonType && wagonId && !classArray.find(item => item.coach._id === wagonId)) {
+    obj = data.filter(item => item.coach.class_type === wagonType)[0];
+
+  } else if (data && wagonType && wagonId && classArray.find(item => item.coach._id === wagonId)) {
     obj = data.filter(item => item.coach._id === wagonId)[0];
   }
 
   const chooseService = (e) => {
-    //console.dir(e.target);
+    const item = e.target.closest(".wagon-details__service-icon");
+    if (item && item.className === "wagon-details__service-icon") {
+      item.classList.add("wagon-details__service-icon-active");
+    } else if (item && item.className === "wagon-details__service-icon wagon-details__service-icon-active") {
+      item.classList.remove("wagon-details__service-icon-active");
+    }
   };
 
 
@@ -81,7 +90,10 @@ function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
             data-tooltip-content={obj.coach.have_air_conditioning ? "кондиционер работает" : "кондиционер отсутствует"}   
             data-tooltip-place="bottom">
             <TooltipBlock id="have_air_conditioning" />
-            <div className={obj.coach.have_air_conditioning ? "wagon-details__service-icon wagon-details__service-icon-include" : "wagon-details__service-icon wagon-details__service-icon-exclude"}>
+            <div 
+              className={obj.coach.have_air_conditioning ? 
+              "wagon-details__service-icon wagon-details__service-icon-include" : 
+              "wagon-details__service-icon wagon-details__service-icon-exclude"}>
               <SVGicon name={"have_air_conditioning"}/>
             </div>
           </li>
@@ -92,7 +104,10 @@ function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
             data-tooltip-content={obj.coach.have_wifi ? `WI-FI, стоимость ${obj.coach.wifi_price} ₽` : "WI-FI отсутствует"}
             data-tooltip-place="bottom">
             <TooltipBlock id="have_wifi" />
-            <div className={obj.coach.have_wifi ? "wagon-details__service-icon" : "wagon-details__service-icon wagon-details__service-icon-exclude"}>
+            <div 
+              className={obj.coach.have_wifi ? 
+              "wagon-details__service-icon" : 
+              "wagon-details__service-icon wagon-details__service-icon-exclude"}>
               <SVGicon name={"have_wifi"}/>
             </div>
           </li>
@@ -103,7 +118,10 @@ function SeatsWagonDetailsBody({data, wagonType, wagonId}) {
             data-tooltip-content={obj.coach.is_linens_included ? "белье включено в стоимость" : `белье, стоимость ${obj.coach.linens_price} ₽`}
             data-tooltip-place="bottom">
             <TooltipBlock id="have_bed_linen" />
-            <div className={obj.coach.is_linens_included ? "wagon-details__service-icon wagon-details__service-icon-include" : "wagon-details__service-icon"}>
+            <div 
+              className={obj.coach.is_linens_included ? 
+              "wagon-details__service-icon wagon-details__service-icon-include" : 
+              "wagon-details__service-icon"}>
               <SVGicon name={"have_bed_linen"}/>
             </div>
           </li>
