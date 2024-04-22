@@ -8,11 +8,11 @@
   background-color: #ffaa0080;
 }
 
-.wagon-details__header p {
+.seats__wagon-details-header p {
   font-size: 16px;
 }
 
-.wagon-details__header p:last-child {
+.seats__wagon-details-header p:last-child {
   margin-left: auto;
 }
 
@@ -21,6 +21,10 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+}
+
+.wagon-details__list button:first-child {
+  color: var(--color-white);
 }
 
 .wagon-details__item {

@@ -1,6 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import AppContext from "#context/appContext";
 import ReactPaginate from "react-paginate";
 import OrderTrain from "../OrderTrain/OrderTrain";
 import "./OrderPagination.css";
@@ -14,49 +14,47 @@ function Items({ currentItems, data }) {
         data.items.map((item, i) => (
           <OrderTrain key={i} item={item}/>
         ))
-        : <p>Результаты не найдены</p>
+        : "Результаты не найдены"
       }
     </>
   );
 }
 
-function PaginatedItems({ itemsPerPage }) {
+function PaginatedItems({ itemsPerPage, routes, onChange }) {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getResult = async () => {
-      try {
-        const response = await fetch("https://students.netoservices.ru/fe-diplom/routes?from_city_id=65f7ee8d3e252100467cb2a3&to_city_id=65f7ee8e3e252100467cb2a4&limit=5&offset=5");
-        if (!response.ok) console.error(response.status, response.statusText);
-        const result = await response.json();
-        setData(result);
-        const count = [...Array(result.total_count).keys()];
-        const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(count.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(count.length / itemsPerPage));
-      } catch(e) {
-        console.error(e.status, e.statusText);
-      }
-    };
-    getResult();
-  }, [itemOffset, itemsPerPage]);
+    setData(routes);
+    const count = [...Array(data.total_count).keys()];
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(count.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(count.length / itemsPerPage));
+  }, [data, itemOffset, itemsPerPage, routes]);
 
-  const handlePageClick = (event) => {
-    const newOffset = event.selected * itemsPerPage % data.items.length;
+  const handlePageClick = (e) => {
+    const newOffset = e.selected * itemsPerPage % data.items.length;
     setItemOffset(newOffset);
+  };
+
+  const handlePage = (e) => {
+    if (e.nextSelectedPage === undefined) return;
+    const curOffset = itemsPerPage * e.nextSelectedPage;
+    onChange(curOffset);
   };
 
 
   return (
     <>
       <Items currentItems={currentItems} data={data}/>
-      <ReactPaginate
+      {data && data.items ?
+        <ReactPaginate
         className="pagination-wrapper"
         nextLabel=">"
         onPageChange={handlePageClick}
+        onClick={handlePage}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
         pageCount={pageCount}
@@ -73,15 +71,23 @@ function PaginatedItems({ itemsPerPage }) {
         containerClassName="pagination"
         activeClassName="active"
         renderOnZeroPageCount={null}
-      />
+      /> : ""
+      }
     </>
   );
 }
 
-function OrderPagination() {
+function OrderPagination({routes, onChange}) {
+  const {appState} = useContext(AppContext);
+
+  const handlePage = (value) => {
+    onChange(value);
+  };
+
+
   return (
     <div className="order-pagination">
-      <PaginatedItems itemsPerPage={5} />
+      <PaginatedItems itemsPerPage={appState.limit ? Number(appState.limit) : 5} routes={routes} onChange={handlePage} />
     </div>
   );
 }
@@ -90,10 +96,17 @@ export default OrderPagination;
 
 
 Items.propTypes = {
-  currentItems: PropTypes.array,
-  data: PropTypes.object,
+  currentItems: PropTypes.array, 
+  data: PropTypes.object.isRequired, 
 };
 
 PaginatedItems.propTypes = {
-  itemsPerPage: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired, 
+  routes: PropTypes.object.isRequired, 
+  onChange: PropTypes.func, 
+};
+
+OrderPagination.propTypes = {
+  routes: PropTypes.object.isRequired, 
+  onChange: PropTypes.func, 
 };

@@ -1,16 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Slider } from "antd";
 import "./SliderPrice.css";
 
 
-function SliderPrice() {
+function SliderPrice({onChange}) {
   const marks = {
-    1920: "1920",
-    7000: "7000",
+    0: "0",
+    9999: "9999",
   }
 
   const onChangeComplete = (value) => {
-    console.log(`Стоимость от ${value[0]} до ${value[1]} рублей`);
+    const obj = {};
+    obj["price_from"] = value[0];
+    obj["price_to"] = value[1];
+    onChange(obj);
   };
 
 
@@ -18,10 +22,10 @@ function SliderPrice() {
     <Slider
       range={{draggableTrack: false}}
       tooltip={{open: true}}
-      defaultValue={[1920, 4500]}
+      defaultValue={[0, 9999]}
       step={10}
-      min={1920}
-      max={7000}
+      min={0}
+      max={9999}
       marks={marks}
       onChangeComplete={onChangeComplete}
     />
@@ -29,3 +33,7 @@ function SliderPrice() {
 }
 
 export default SliderPrice;
+
+SliderPrice.propTypes = {
+  onChange: PropTypes.func, 
+};

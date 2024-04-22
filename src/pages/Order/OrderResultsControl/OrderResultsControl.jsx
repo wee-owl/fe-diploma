@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import AppContext from "#context/appContext";
 import "./OrderResultsControl.css";
 
 
-function OrderResultsControl() {
+function OrderResultsControl({count, onChange}) {
+  const {appState, setAppState} = useContext(AppContext);
   const [option, setOption] = useState({dataValue: "date", value: "времени"});
-  // const [view, setView] = useState({dataValue: "5", value: "5"});
+  const [view, setView] = useState({dataValue: "5", value: "5"});
+  const [update, setUpdate] = useState(false);
 
   const handleOptions = (e) => {
     e.preventDefault();
-    setOption({dataValue: e.target.dataValue, value: e.target.value});
     e.target.parentElement.classList.toggle("result-control__options-visible");
+    onChange(e.target.dataset.value);
+    setOption({dataValue: e.target.dataset.value, value: e.target.value});
+    setUpdate(true);
   };
 
   const handleOpenList = (e) => {
@@ -22,16 +28,27 @@ function OrderResultsControl() {
     if (e.target.closest(".view-button")) {
       [...e.target.parentElement.children].map(item => item.className = "view-button")
       e.target.classList.add("view-button_active");
-      // setView({dataValue: e.target.dataset.value, value: e.target.textContent});
+      setView({dataValue: e.target.dataset.value, value: e.target.textContent});
+      setUpdate(true);
     }
   };
+
+  useEffect(() => {
+    if (!update) return;
+    setAppState({
+      ...appState, 
+      sort: option.dataValue || "date", 
+      limit: view.value || "5", 
+    });
+    setUpdate(false);
+  },[appState, option, setAppState, update, view]);
 
 
   return (
     <div className="order-results__control result-control">
 
       <p>найдено:&nbsp;&nbsp;
-        <span className="result-control__find-value">14</span>
+        <span className="result-control__find-value">{count}</span>
       </p>
 
       <div className="result-control__sort">
@@ -80,3 +97,8 @@ function OrderResultsControl() {
 }
 
 export default OrderResultsControl;
+
+OrderResultsControl.propTypes = {
+  count: PropTypes.number.isRequired, 
+  onChange: PropTypes.func, 
+};

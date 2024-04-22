@@ -21,6 +21,7 @@
 }
 
 .order-results {
+  position: relative;
   width: 100%;
 }
 

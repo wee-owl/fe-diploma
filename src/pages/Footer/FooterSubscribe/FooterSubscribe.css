@@ -40,12 +40,11 @@
 
 .subscribe__input-error {
   position: absolute;
-  display: block;
+  display: none;
   margin-top: 100px;
-  color: var(--color-white);
+  color: var(--color-orange);
   text-align: left;
   font-size: 18px;
-  display: none;
 }
 
 .subscribe__button {
@@ -92,10 +91,6 @@
 
 .subscribe__input:valid:not(:placeholder-shown) {
   border-color: var(--color-orange);
-}
-
-.subscribe__input:invalid:not(:placeholder-shown) + .subscribe__input-error {
-  display: block;
 }
 
 .subscribe__input:focus::placeholder {

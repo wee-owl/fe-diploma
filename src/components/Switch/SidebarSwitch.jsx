@@ -4,19 +4,22 @@ import { Switch } from "antd";
 import "./SidebarSwitch.css";
 
 
-function SidebarSwitch({name}) {
-  const onChange = (checked) => {
-    console.log(`switch to ${checked}`);
+function SidebarSwitch({name, onChange}) {
+  const handleClick = (value) => {
+    const obj = {};
+    obj[name] = value;
+    onChange(obj);
   };
 
 
   return (
-    <Switch className="switch__btn" data-name={name} onChange={onChange}/>
+    <Switch className="switch__btn" data-name={name} onChange={handleClick}/>
   );
 }
 
 export default SidebarSwitch;
 
 SidebarSwitch.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired, 
+  onChange: PropTypes.func, 
 };

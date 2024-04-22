@@ -4,7 +4,7 @@ import { Slider } from "antd";
 import "./SliderPeriod.css";
 
 
-function SliderPeriod({data}) {
+function SliderPeriod({data, name, onChange}) {
   const marks = {
     0: "0:00",
     24: "24:00",
@@ -13,7 +13,10 @@ function SliderPeriod({data}) {
   const formatter = (value) => `${value}:00`;
 
   const onChangeComplete = (value) => {
-    console.log(`Время c ${value[0]} до ${value[1]}`);
+    const obj = {};
+    obj[`${name}_hour_from`] = value[0];
+    obj[`${name}_hour_to`] = value[1];
+    onChange(obj);
   };
 
 
@@ -34,5 +37,7 @@ function SliderPeriod({data}) {
 export default SliderPeriod;
 
 SliderPeriod.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired, 
+  name: PropTypes.string.isRequired, 
+  onChange: PropTypes.func, 
 };
