@@ -9,8 +9,6 @@ export const initialOrderState = {
     child: null,
     baby: null,
   },
-
-
   departure_service: {
     first: null,
     second: null,
@@ -23,21 +21,17 @@ export const initialOrderState = {
     third: null,
     fourth: null,
   },
-
-
   user: {
     first_name: null,
     last_name: null,
     patronymic: null,
     phone: null,
     email: null,
-    payment_method: null,    // cash or online
+    payment_method: null,
   },
-
-
   departure: {
     route_direction_id: null,
-    seats: [                    //  кол-во seats === кол-ву пассажиров
+    seats: [
       {
         coach_id: null,
         seat_number: null,
@@ -56,11 +50,9 @@ export const initialOrderState = {
       },
     ],
   },
-
-
   arrival: {
     route_direction_id: null,
-    seats: [                    //  кол-во seats === кол-ву пассажиров
+    seats: [
       {
         coach_id: null,
         seat_number: null,

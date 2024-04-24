@@ -142,7 +142,7 @@ function OrderFilters() {
                 <SVGicon name={item.name}/>
               </div>
               <span className="switch__title">{item.alt}</span>
-              <SidebarSwitch name={item.name} onChange={handleClickSwitch}/>
+              <SidebarSwitch name={item.name} onChange={handleClickSwitch} />
             </div>
             )
           })

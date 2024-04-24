@@ -1,11 +1,23 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import PayContext from "#context/payContext";
+import OrderContext from "#context/orderContext";
 import SVGicon from "#components/SVGicon/SVGicon";
 import "./FinishInfo.css";
 
 
 function FinishInfo() {
+  const {orderState} = useContext(OrderContext);
+  const {payState} = useContext(PayContext);
   const navigate = useNavigate();
+
+  const serviceDepCost = Object.values(orderState.departure_service).reduce((acc, item) => acc + +item, 0);
+  const serviceArrCost = Object.values(orderState.arrival_service).reduce((acc, item) => acc + +item, 0);
+  const ticketsDepCost = orderState.departure && orderState.departure.seats ? orderState.departure.seats.reduce((acc, item) => acc + +item.seat_cost, 0) : null;
+  const ticketsArrCost = orderState.arrival && orderState.arrival.seats ? orderState.arrival.seats.reduce((acc, item) => acc + +item.seat_cost, 0) : null;
+  const totalDepCost = Number(serviceDepCost) + Number(ticketsDepCost);
+  const totalArrCost = Number(serviceArrCost) + Number(ticketsArrCost);
+  const totalDepArrCost = totalDepCost + totalArrCost;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -21,7 +33,7 @@ function FinishInfo() {
 
           <div className="finish-info__order-info">
             <p>№ Заказа 285АА</p>
-            <p>сумма<span className="finish-info__order-cost">7760</span>&#8381;</p>
+            <p>сумма<span className="finish-info__order-cost">{totalDepArrCost}</span>&#8381;</p>
           </div>
 
           <div className="finish-info__tickets-info">
@@ -40,7 +52,7 @@ function FinishInfo() {
           </div>
 
           <div className="finish-info__appeal-info">
-            <p>Ирина Эдуардовна!</p>
+            <p>{`${payState.user.first_name} ${payState.user.patronymic}!`}</p>
             <p>Ваш заказ успешно оформлен.<br/>В ближайшее время с вами свяжется наш оператор для подтверждения.</p>
             <p>Благодарим Вас за оказанное доверие и желаем приятного путешествия!</p>
           </div>

@@ -14,7 +14,8 @@ function OrderContainer() {
   const {appState, setAppState} = useContext(AppContext);
   const {result, isLoading} = useGetRoutes(appState);
   const [modal, setModal] = useState("none");
-  const [setLoader] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [loader, setLoader] = useState(false);
   const [loadApp, setLoadApp] = useState(false);
   const [newOffset, setNewOffset] = useState(null);
 
