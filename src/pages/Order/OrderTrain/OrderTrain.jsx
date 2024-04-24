@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import AppContext from "#context/appContext";
 import RouteContext from "#context/routeContext";
+import OrderContext from "#context/orderContext";
 import { useNavigate } from "react-router-dom";
 import SVGicon from "#components/SVGicon/SVGicon";
 import getTime from '#services/getTime';
@@ -11,6 +12,7 @@ import "./OrderTrain.css";
 function OrderTrain({ item }) {
   const {appState, setAppState} = useContext(AppContext);
   const {routeState, setRouteState} = useContext(RouteContext);
+  const {orderState, setOrderState} = useContext(OrderContext);
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -44,6 +46,12 @@ function OrderTrain({ item }) {
       arrival_to_datetime: item && item.arrival ? getTime(item.arrival.to.datetime) : null,
       arrival_to_railway_station_name: item && item.arrival ? item.arrival.to.railway_station_name : null,
       arrival_duration: item && item.arrival ? getTime(item.arrival.duration) : null,
+    });
+
+    setOrderState({
+      ...orderState,
+      departure: {route_direction_id: departureId && departureId.id ? departureId.id : null},
+      arrival: {route_direction_id: arrivalId && arrivalId.id ? arrivalId.id : null},
     });
 
     navigate("/fe-diploma/order/seats");

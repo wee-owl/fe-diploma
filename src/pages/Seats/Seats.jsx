@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import AppContext from "#context/appContext";
+import OrderContext from "#context/orderContext";
 import useGetSeats from "#services/useGetSeats";
 import { useNavigate } from "react-router-dom";
 import SeatsContainer from "../Seats/SeatsContainer/SeatsContainer";
@@ -9,6 +10,7 @@ import "./Seats.css";
 
 function Seats() {
   const {appState} = useContext(AppContext);
+  const {orderState} = useContext(OrderContext);
   const {resultDeparture} = useGetSeats(appState, "departure");
   const {resultArrival} = useGetSeats(appState, "arrival");
   const [modal, setModal] = useState("none");
@@ -22,6 +24,16 @@ function Seats() {
 
   const handleModal = (value) => {
     setModal(value);
+  };
+
+  const setDisabled = () => {
+    let boo;
+    if (orderState.departure.route_direction_id && !orderState.arrival.route_direction_id) {
+      boo = !(orderState.departure.seats && orderState.departure.seats.length);
+    } else {
+      boo = !(orderState.departure.seats && orderState.departure.seats.length) || !(orderState.arrival.seats && orderState.arrival.seats.length);
+    }
+    return boo;
   };
 
   useEffect(() => {
@@ -40,7 +52,7 @@ function Seats() {
     <div>
       <p className="seats-title">Выбор мест</p>
       <SeatsContainer />
-      <button className="seats-button" type="button" onClick={handleClick}>далее</button>
+      <button className="seats-button" type="button" onClick={handleClick} disabled={setDisabled()}>далее</button>
       <Modal status={"error"} display={modal} text={resultArrival && resultArrival.result.error ? resultArrival.result.error : ""} onChange={handleModal}/>
     </div>
   );

@@ -45,7 +45,7 @@ function SeatsTrain({data}) {
           <SVGicon name={"clock"}/>
         </div>
         <p>
-          <span className="seats__about-clock-hour">{data === "departure" ? routeState.departure_duration.slice(0, 2) : routeState.arrival_duration.slice(0, 2)}</span> часа(ов) <br/>
+          <span className="seats__about-clock-hour">{data === "departure" ? routeState.departure_duration.slice(-4, -3) : routeState.arrival_duration.slice(-4, -3)}</span> часа(ов) <br/>
           <span className="seats__about-clock-minute">{data === "departure" ? routeState.departure_duration.slice(-2, -1) : routeState.arrival_duration.slice(-2, -1)}</span> минут(ы)
         </p>
       </div>

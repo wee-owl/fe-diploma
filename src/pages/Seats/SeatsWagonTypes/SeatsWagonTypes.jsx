@@ -24,6 +24,26 @@ function SeatsWagonTypes({data, identity, onChange}) {
       [`${identity}Class`]: targetClass,
       [`targetType${identity}`]: data.filter(item => item.coach.class_type === targetClass),
     });
+
+    const way = [...e.target.ownerDocument.querySelectorAll(".seats__container")];
+
+    if (identity === "departure") {
+      const wagonsDeparture = [...way[0].querySelectorAll(".seats__wagon-details")];
+      wagonsDeparture.forEach(item => item.style.display = "none");
+      wagonsDeparture.forEach(item => {
+        if (item.children[0].children[0].textContent === e.target.textContent) {
+          item.style.display = "flex";
+        }
+      });
+    } else {
+      const wagonsArrival = [...way[1].querySelectorAll(".seats__wagon-details")];
+      wagonsArrival.forEach(item => item.style.display = "none");
+      wagonsArrival.forEach(item => {
+        if (item.children[0].children[0].textContent === e.target.textContent) {
+          item.style.display = "flex";
+        }
+      });
+    }
   };
 
 

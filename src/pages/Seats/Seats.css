@@ -23,7 +23,8 @@
 
 .seats-button:disabled {
   border-color: var(--color-grey);
-  background-color: var(--color-grey);;
+  background-color: var(--color-grey);
+  cursor: not-allowed;
 }
 
 .seats-button:hover:not(:disabled), 

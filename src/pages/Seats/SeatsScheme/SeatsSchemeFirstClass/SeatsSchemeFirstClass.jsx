@@ -10,14 +10,50 @@ function SeatsSchemeFirstClass({seats, onChange}) {
 
   const handleSeat = (e) => {
     e.preventDefault();
+    let coachId;
+    const way = [...e.target.ownerDocument.querySelectorAll(".seats__container")];
     const item = e.target.closest(".scheme__seats-item");
-    item.classList.toggle("selected");
-    onChange({
-      type: "first",
-      seatIndex: item.textContent, 
-      seatSide: "", 
-      selected: [...item.classList].includes("selected"),
-    });
+    const wagonName = e.target.closest(".seats__wagon-details").firstElementChild.querySelector(".wagon-number").textContent;
+
+    if (e.target.closest(".seats__container").dataset.name === "departure") {
+      const inputValue = way[0].querySelector('input[name="adult"]').value;
+      if (!inputValue || +inputValue === 0) {
+        const inputLabel = way[0].querySelector('input[name="adult"]').parentElement;
+        inputLabel.style.outline = "10px solid #ff3d0061";
+        setTimeout(() => inputLabel.style.outline = "none", 1000);
+      } else {
+        item.classList.toggle("selected");
+        coachId = [...way[0].querySelectorAll(".wagon-details__item")].filter(item => item.textContent === wagonName)[0].id;
+        onChange({
+          way: e.target.closest(".seats__container").dataset.name,
+          type: "first",
+          coach_id: coachId,
+          seatIndex: item.textContent, 
+          seatSide: "", 
+          selected: [...item.classList].includes("selected"),
+        });
+      }
+    } 
+
+    if (e.target.closest(".seats__container").dataset.name === "arrival") {
+      const inputValue = way[1].querySelector('input[name="adult"]').value;
+      if (!inputValue || +inputValue === 0) {
+        const inputLabel = way[1].querySelector('input[name="adult"]').parentElement;
+        inputLabel.style.outline = "10px solid #ff3d0061";
+        setTimeout(() => inputLabel.style.outline = "none", 1000);
+      } else {
+        item.classList.toggle("selected");
+        coachId = [...way[1].querySelectorAll(".wagon-details__item")].filter(item => item.textContent === wagonName)[0].id;
+        onChange({
+          way: e.target.closest(".seats__container").dataset.name,
+          type: "first",
+          coach_id: coachId,
+          seatIndex: item.textContent, 
+          seatSide: "", 
+          selected: [...item.classList].includes("selected"),
+        });
+      }
+    }
   };
 
 

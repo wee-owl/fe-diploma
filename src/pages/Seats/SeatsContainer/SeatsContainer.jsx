@@ -36,7 +36,7 @@ function SeatsContainer() {
   return (
     <>
 
-      <div className="seats__container" id={appState && appState.departure_id ? appState.departure_id : null}>
+      <div className="seats__container" id={appState && appState.departure_id ? appState.departure_id : null} data-name="departure">
         <SeatsExchange data={false}/>
         <SeatsTrain data={"departure"}/>
         {
@@ -60,7 +60,7 @@ function SeatsContainer() {
                   data={Array.isArray(resultDeparture.result) ? resultDeparture.result : Array.from(resultDeparture.result)}
                   identity={"departure"}
                 />
-                <SeatsTotalCost />
+                <SeatsTotalCost identity={"departure"}/>
               </> : ""
             }
           </> : <p className="seats__container-error-string">Мест по вашему запросу не обнаружено</p>
@@ -68,7 +68,7 @@ function SeatsContainer() {
       </div>
 
       {appState && appState.arrival_id ? 
-        <div className="seats__container" id={appState.arrival_id}>
+        <div className="seats__container" id={appState.arrival_id} data-name="arrival">
           <SeatsExchange data={true}/>
           <SeatsTrain data={"arrival"}/>
           {
@@ -92,7 +92,7 @@ function SeatsContainer() {
                     data={Array.isArray(resultArrival.result) ? resultArrival.result : Array.from(resultArrival.result)}
                     identity={"arrival"}
                   />
-                  <SeatsTotalCost />
+                  <SeatsTotalCost identity={"arrival"}/>
                 </> : ""
               }
             </> : <p className="seats__container-error-string">Мест по вашему запросу не обнаружено</p>

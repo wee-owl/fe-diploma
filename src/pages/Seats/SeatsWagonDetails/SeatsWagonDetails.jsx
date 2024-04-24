@@ -11,18 +11,37 @@ function SeatsWagonDetails({data, identity}) {
 
 
   return (
-    <div className="seats__wagon-details wagon-details" id={`wagon-details-${identity}`}>
-      <SeatsWagonDetailsBody 
-        data={data} 
-        wagonType={identity === "departure" ? routeState.departureClass : routeState.arrivalClass}
-        wagonId={identity === "departure" ? routeState.departureId :  routeState.arrivalId}
-      />
-      <SeatsScheme 
-        data={data} 
-        wagonType={identity === "departure" ? routeState.departureClass : routeState.arrivalClass}
-        wagonId={identity === "departure" ? routeState.departureId :  routeState.arrivalId}
-      />
-    </div>
+    <>
+      {
+        identity === "departure" ?
+        data.map((item, i) => {
+          return (
+            <div className="seats__wagon-details wagon-details" id={`wagon-details-departure_${i}`} key={`departure_${i}`}>
+              <SeatsWagonDetailsBody 
+                data={item} 
+                wagonType={routeState.departureClass}
+              />
+              <SeatsScheme 
+                data={item} 
+              />
+            </div> 
+          )
+        }) :
+        data.map((item, i) => {
+          return (
+            <div className="seats__wagon-details wagon-details" id={`wagon-details-arrival_${i}`} key={`${i}_arrival`}>
+              <SeatsWagonDetailsBody 
+                data={item} 
+                wagonType={routeState.arrivalClass}
+              />
+              <SeatsScheme 
+                data={item} 
+              />
+            </div> 
+          )
+        })
+      }
+    </>
   );
 }
 
