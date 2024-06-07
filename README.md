@@ -1,7 +1,30 @@
-## Дипломная работа к профессии Frontend-разработчик «Система бронирования ж/д билетов»
+# [Railway Booking System](https://wee-owl.github.io/fe-diploma/)
+Система бронирования ж/д билетов - это дипломный проект [Нетологии](https://netology.ru/), написанный на React по [макету в Figma](https://www.figma.com/file/7981GjEsjSpBUKolk4xFoT/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2?node-id=0%3A1).  
+Возможности ресурса: выбор направления и даты поездки, фильтрация результатов поиска, выбор вагонов и мест в вагонах с дополнительными услугами, оформление заказа и отправка данных на сервер.  
+В качестве API используется [внешний сервер](https://github.com/netology-code/fe-2-diplom/blob/master/reference/api.md).  
+  
+<img src="https://github.com/wee-owl/fe-diploma/assets/95621680/519435ce-7196-42e1-8df2-a70c6ec46a00" width="500" height="">
 
-### Краткое описание задачи дипломной работы
-Создать SPA на React для сервиса покупки билетов на ж/д, свёрстанное по [макетам в Figma](https://www.figma.com/file/7981GjEsjSpBUKolk4xFoT/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2?node-id=0%3A1), в котором в качестве API используется [внешний сервер](https://students.netoservices.ru/fe-diplom/).  
-[Полное описание проекта](https://github.com/netology-code/fe-2-diplom/tree/master)
+## Технологии
+- React
+- React Router
+- React Context API
+- React Hooks
+- Ant Design of React
+- Moment.js in React
+- React-Paginate
 
-#### Дипломная работа доступна по ссылке [https://wee-owl.github.io/fe-diploma](https://wee-owl.github.io/fe-diploma)
+## Реализованная функциональность
+- подписка на новости
+- поиск билетов
+- фильтры направлений
+- последние билеты
+- постраничная навигация, сортировка
+- предосмотр поезда
+- выбор места
+- данные пассажира
+- оплата
+- детали поездки
+- подтверждение заказа
+- результат заказа
+- модальное окно
